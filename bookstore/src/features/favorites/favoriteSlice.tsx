@@ -1,17 +1,13 @@
+import { IBook } from "@/types/book";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Book {
-  isbn13: string;
-  title: string;
-}
-
-const initialState: Book[] = [];
+const initialState: IBook[] = [];
 
 const favoriteSlice = createSlice({
   name: "favorites",
   initialState,
   reducers: {
-    updateFavorite: (state, action: PayloadAction<Book>) => {
+    updateFavorite: (state, action: PayloadAction<IBook>) => {
       const existingIndex = state.findIndex(
         (favorite) => favorite.isbn13 === action.payload.isbn13
       );

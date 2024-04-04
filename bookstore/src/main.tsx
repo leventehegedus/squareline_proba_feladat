@@ -1,15 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import "./index.css";
-import "../app/globals.css";
 import { Provider } from "react-redux";
 import { store } from "./store.ts";
+import { BrowserRouter } from "react-router-dom";
+import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
+import "../app/globals.css";
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <Theme>
+          <App />
+        </Theme>
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );

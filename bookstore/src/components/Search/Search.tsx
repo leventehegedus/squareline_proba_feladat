@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-
-interface Book {
-  title: string;
-  image: string;
-  price: string;
-}
+import Book from "../Book/Book";
+import { IBook } from "@/types/book";
 
 const FindYourBooks: React.FC = () => {
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<IBook[]>([]);
   const [loading, setLoading] = useState(false);
 
   const fetchBooks = async () => {
@@ -73,16 +69,15 @@ const FindYourBooks: React.FC = () => {
               gap: "10px",
             }}
           >
-            {books.map((book, index) => (
-              <div key={index}>
-                <img
-                  src={book.image}
-                  alt={book.title}
-                  style={{ maxWidth: "100px" }}
-                />
-                <h3>{book.title}</h3>
-                <p>{book.price}</p>
-              </div>
+            {books.map((book: IBook) => (
+              <Book
+                title={book.title}
+                subtitle={book.subtitle}
+                isbn13={book.isbn13}
+                price={book.price}
+                image={book.image}
+                url={book.url}
+              />
             ))}
           </div>
         </div>

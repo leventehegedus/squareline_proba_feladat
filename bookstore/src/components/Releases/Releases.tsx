@@ -6,15 +6,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { Book } from "@/types/book";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { updateFavorite } from "@/features/favorites/favoriteSlice";
+import { IBook } from "@/types/book";
+import Book from "../Book/Book";
 
 const Releases: React.FC = () => {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<IBook[]>([]);
   const [loading, setLoading] = useState(true);
-  const dispatch = useAppDispatch();
-  const favorites = useAppSelector((state) => state);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,35 +32,24 @@ const Releases: React.FC = () => {
     fetchData();
   }, []);
 
-  const addFav = (book: Book) => {
-    console.log(book);
-    dispatch(updateFavorite(book));
-  };
-
   return (
     <div>
-      {JSON.stringify(favorites)}
       <h1>New Books</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <Carousel className="w-full max-w-xs">
+        <Carousel className="w-full">
           <CarouselContent>
             {books.map((book, index) => (
-              <CarouselItem key={index}>
-                <div className="p-1">
-                  <img
-                    src={book.image}
-                    alt={book.title}
-                    style={{ maxWidth: "100px" }}
-                    onClick={() => addFav(book)}
-                  />
-                  <div>
-                    <h3>{book.title}</h3>
-                    <p>{book.subtitle}</p>
-                    <p>Price: {book.price}</p>
-                  </div>
-                </div>
+              <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/5 ">
+                <Book
+                  title={book.title}
+                  subtitle={book.subtitle}
+                  isbn13={book.isbn13}
+                  price={book.price}
+                  image={book.image}
+                  url={book.url}
+                />
               </CarouselItem>
             ))}
           </CarouselContent>
