@@ -6,21 +6,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
-import { Card, CardContent } from "../ui/card";
-
-// Define interface for book data
-interface Book {
-  title: string;
-  subtitle: string;
-  isbn13: string;
-  price: string;
-  image: string;
-  url: string;
-}
+import { Book } from "@/types/book";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { updateFavorite } from "@/features/favorites/favoriteSlice";
 
 const Releases: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const favorites = useAppSelector((state) => state);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,8 +35,14 @@ const Releases: React.FC = () => {
     fetchData();
   }, []);
 
+  const addFav = (book: Book) => {
+    console.log(book);
+    dispatch(updateFavorite(book));
+  };
+
   return (
     <div>
+      {JSON.stringify(favorites)}
       <h1>New Books</h1>
       {loading ? (
         <p>Loading...</p>
@@ -56,6 +56,7 @@ const Releases: React.FC = () => {
                     src={book.image}
                     alt={book.title}
                     style={{ maxWidth: "100px" }}
+                    onClick={() => addFav(book)}
                   />
                   <div>
                     <h3>{book.title}</h3>
