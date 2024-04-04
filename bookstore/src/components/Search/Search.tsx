@@ -30,7 +30,7 @@ const FindYourBooks: React.FC = () => {
 
   useEffect(() => {
     fetchBooks();
-  }, [searchText]);
+  }, [searchText, currentPage]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
