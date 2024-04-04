@@ -8,6 +8,7 @@ import {
 } from "../ui/carousel";
 import { IBook } from "@/types/book";
 import Book from "../Book/Book";
+import { Text, Box } from "@radix-ui/themes";
 
 const Releases: React.FC = () => {
   const [books, setBooks] = useState<IBook[]>([]);
@@ -33,10 +34,12 @@ const Releases: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>New Books</h1>
+    <Box className="p-16 text-left w-full">
+      <Text className="text-2xl uppercase text-orange-800 font-bold">
+        New releases
+      </Text>
       {loading ? (
-        <p>Loading...</p>
+        <Text>Loading...</Text>
       ) : (
         <Carousel className="w-full">
           <CarouselContent>
@@ -57,7 +60,7 @@ const Releases: React.FC = () => {
           <CarouselNext />
         </Carousel>
       )}
-    </div>
+    </Box>
   );
 };
 

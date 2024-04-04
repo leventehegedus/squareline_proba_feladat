@@ -32,11 +32,11 @@ const Book: React.FC<IBook> = (book: IBook) => {
   };
 
   return (
-    <Flex direction={"column"}>
+    <Flex direction={"column"} className="cursor-pointer items-center">
       <Box
         style={{ backgroundImage: `url(${book.image})` }}
         onClick={() => addFav(book)}
-        className="w-[300px] h-[350px] relative"
+        className="w-full max-w-[300px] h-[350px] relative bg-cover bg-center"
       >
         <Flex
           className="absolute w-[50px] h-[50px] rounded-full bg-orange-400 text-slate-50 bottom-0 left-1/2 -translate-x-1/2"
@@ -45,7 +45,7 @@ const Book: React.FC<IBook> = (book: IBook) => {
         >
           <Text>{getRoundedPriceString(book.price)}</Text>
         </Flex>
-        <Box className="absolute top-2 left-2">
+        <Box className="absolute top-4 left-4">
           <img
             src={isFavorite(book.isbn13) ? StarSlash : Star}
             alt={isFavorite(book.isbn13) ? StarSlash : Star}
@@ -54,7 +54,7 @@ const Book: React.FC<IBook> = (book: IBook) => {
         </Box>
       </Box>
       <Box>
-        <Text as="div" align={"center"}>
+        <Text as="div" align={"center"} className="font-bold">
           {book.title}
         </Text>
         <Text as="div" align={"center"}>

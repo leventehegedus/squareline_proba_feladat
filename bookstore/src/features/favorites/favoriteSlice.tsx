@@ -1,26 +1,22 @@
+import { IBook } from "@/types/book";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface Book {
-  isbn13: string;
-  title: string;
-}
 
 const loadFavoritesFromStorage = () => {
   const favorites = localStorage.getItem("favorites");
   return favorites ? JSON.parse(favorites) : [];
 };
 
-const saveFavoritesToStorage = (favorites: Book[]) => {
+const saveFavoritesToStorage = (favorites: IBook[]) => {
   localStorage.setItem("favorites", JSON.stringify(favorites));
 };
 
-const initialState: Book[] = loadFavoritesFromStorage();
+const initialState: IBook[] = loadFavoritesFromStorage();
 
 const favoriteSlice = createSlice({
   name: "favorites",
   initialState,
   reducers: {
-    updateFavorite: (state, action: PayloadAction<Book>) => {
+    updateFavorite: (state, action: PayloadAction<IBook>) => {
       const existingIndex = state.findIndex(
         (favorite) => favorite.isbn13 === action.payload.isbn13
       );

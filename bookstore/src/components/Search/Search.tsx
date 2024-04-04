@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Book from "../Book/Book";
 import { IBook } from "@/types/book";
+import { Text, Box } from "@radix-ui/themes";
 
 const FindYourBooks: React.FC = () => {
   const [searchText, setSearchText] = useState("");
@@ -20,7 +21,7 @@ const FindYourBooks: React.FC = () => {
       }
       const data = await response.json();
       setBooks(data.books);
-      setTotalPages(Math.ceil(data.total / 25)); // Assuming 25 books per page
+      setTotalPages(Math.ceil(data.total / 10));
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -41,7 +42,11 @@ const FindYourBooks: React.FC = () => {
   };
 
   return (
-    <div>
+    <Box className="p-16 text-left w-full">
+      <Text className="text-2xl uppercase text-orange-800 font-bold">
+        New releases
+      </Text>
+
       <h1>
         Find Your Books - {searchText} (Page {currentPage} of {totalPages})
       </h1>
@@ -62,13 +67,7 @@ const FindYourBooks: React.FC = () => {
               </button>
             )}
           </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gap: "10px",
-            }}
-          >
+          <div className="grid grid-cols-1 lg:grid-cols-5	gap-2">
             {books.map((book: IBook) => (
               <Book
                 title={book.title}
@@ -82,7 +81,7 @@ const FindYourBooks: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </Box>
   );
 };
 

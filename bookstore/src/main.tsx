@@ -6,9 +6,9 @@ import { store } from "./store.ts";
 import { BrowserRouter } from "react-router-dom";
 import { Theme } from "@radix-ui/themes";
 import { Toaster } from "@/components/ui/toaster";
+import "./index.css";
 import "@radix-ui/themes/styles.css";
 import "../app/globals.css";
-import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

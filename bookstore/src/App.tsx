@@ -5,9 +5,12 @@ import Search from "./components/Search/Search";
 import { Route, Routes } from "react-router-dom";
 import { useAppSelector } from "./hooks";
 import Book from "./components/Book/Book";
+import { IBook } from "./types/book";
+import Banner from "./components/Banner/Banner";
 
 function App() {
-  const favorites = useAppSelector((state) => state.favoriteSlice);
+  const favorites: IBook[] = useAppSelector((state) => state.favoriteSlice);
+
   return (
     <>
       <Menu />
@@ -16,6 +19,7 @@ function App() {
           path="/"
           element={
             <>
+              <Banner />
               <Releases />
               <Search />
             </>
@@ -25,7 +29,7 @@ function App() {
           path="/favorites"
           element={
             <div>
-              {favorites.map((book) => (
+              {favorites.map((book: IBook) => (
                 <Book
                   title={book.title}
                   subtitle={book.subtitle}
@@ -33,6 +37,7 @@ function App() {
                   price={book.price}
                   image={book.image}
                   url={book.url}
+                  key={book.isbn13}
                 />
               ))}
             </div>

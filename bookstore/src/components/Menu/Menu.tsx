@@ -15,6 +15,11 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
+import { Flex, Text } from "@radix-ui/themes";
+import Lock from "./lock-svgrepo-com.svg";
+import LockSlash from "./lock-slash-svgrepo-com.svg";
+import Star from "./star-1-svgrepo-com.svg";
+import Profile from "./profile-svgrepo-com.svg";
 
 const Menu: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -45,63 +50,91 @@ const Menu: React.FC = () => {
 
   return (
     <>
-      <Dialog>
-        {!isLoggedIn && (
-          <DialogTrigger asChild>
-            <Button variant="outline">Login</Button>
-          </DialogTrigger>
+      <Flex className="h-12 bg-orange-400 items-center px-4 md:px-16 justify-end">
+        {!isLoggedIn ? (
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="gap-2">
+                <img src={Lock} className="w-6" />
+                <Text>Login</Text>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Edit profile</DialogTitle>
+                <DialogDescription>
+                  Make changes to your profile here. Click save when you're
+                  done.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="username" className="text-right">
+                    Username
+                  </Label>
+                  <Input
+                    id="username"
+                    placeholder="username"
+                    className="col-span-3"
+                    value={username}
+                    onChange={(e) =>
+                      setUsername((e.target as HTMLInputElement).value)
+                    }
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="password" className="text-right">
+                    Password
+                  </Label>
+                  <Input
+                    id="password"
+                    placeholder="***"
+                    className="col-span-3"
+                    value={password}
+                    onChange={(e) =>
+                      setPassword((e.target as HTMLInputElement).value)
+                    }
+                  />
+                </div>
+              </div>
+              <DialogFooter className="sm:justify-start">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => handleLogin()}
+                >
+                  Login
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        ) : (
+          <Button
+            variant="outline"
+            className="gap-2"
+            onClick={() => handleLogout()}
+          >
+            <img src={LockSlash} className="w-6" />
+            <Text>Logout</Text>
+          </Button>
         )}
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Username
-              </Label>
-              <Input
-                id="username"
-                placeholder="username"
-                className="col-span-3"
-                value={username}
-                onChange={(e) =>
-                  setUsername((e.target as HTMLInputElement).value)
-                }
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="password" className="text-right">
-                Password
-              </Label>
-              <Input
-                id="password"
-                placeholder="***"
-                className="col-span-3"
-                value={password}
-                onChange={(e) =>
-                  setPassword((e.target as HTMLInputElement).value)
-                }
-              />
-            </div>
-          </div>
-          <DialogFooter className="sm:justify-start">
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={() => handleLogin()}
-            >
-              Login
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-      {isLoggedIn && <Button onClick={() => handleLogout()}>Logout</Button>}
-      <NavLink to={`/favorites`}>Favorites</NavLink>
-      <NavLink to={`/`}>Home</NavLink>
+      </Flex>
+      <Flex className="h-12 bg-slate-100 items-center px-4 md:px-16 justify-end">
+        {isLoggedIn && (
+          <>
+            <Flex gap="2">
+              <NavLink to={`/favorites`}>
+                {" "}
+                <img src={Star} className="w-6" />
+              </NavLink>
+              <NavLink to={`/`}>
+                {" "}
+                <img src={Profile} className="w-6" />
+              </NavLink>
+            </Flex>
+          </>
+        )}
+      </Flex>
     </>
   );
 };
