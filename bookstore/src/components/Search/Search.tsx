@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Book from "../Book/Book";
 import { IBook } from "@/types/book";
-import { Text, Box } from "@radix-ui/themes";
+import { Text, Box, Flex } from "@radix-ui/themes";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 const FindYourBooks: React.FC = () => {
   const [searchText, setSearchText] = useState("");
@@ -43,30 +45,23 @@ const FindYourBooks: React.FC = () => {
 
   return (
     <Box className="p-16 text-left w-full">
-      <Text className="text-2xl uppercase text-orange-800 font-bold">
-        New releases
-      </Text>
+      <Flex justify={"between"} align={"center"}>
+        <Text className="text-2xl uppercase text-orange-800 font-bold">
+          Find your books
+        </Text>
+        <Input
+          type="text"
+          className="w-60"
+          value={searchText}
+          onChange={handleSearchChange}
+          placeholder="find your books"
+        />
+      </Flex>
 
-      <h1>
-        Find Your Books - {searchText} (Page {currentPage} of {totalPages})
-      </h1>
-      <input type="text" value={searchText} onChange={handleSearchChange} />
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div>
-          <div>
-            {currentPage > 1 && (
-              <button onClick={() => handlePageChange(currentPage - 1)}>
-                Previous
-              </button>
-            )}
-            {currentPage < totalPages && (
-              <button onClick={() => handlePageChange(currentPage + 1)}>
-                Next
-              </button>
-            )}
-          </div>
           <div className="grid grid-cols-1 lg:grid-cols-5	gap-2">
             {books.map((book: IBook) => (
               <Book
@@ -79,6 +74,35 @@ const FindYourBooks: React.FC = () => {
               />
             ))}
           </div>
+          {books.length > 0 && (
+            <Flex justify={"center"}>
+              <Box>
+                <Box className="m-2">
+                  {currentPage > 1 && (
+                    <Button
+                      variant="outline"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      className="m-2"
+                    >
+                      Previous
+                    </Button>
+                  )}
+                  {currentPage < totalPages && (
+                    <Button
+                      variant="outline"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      className="m-2"
+                    >
+                      Next
+                    </Button>
+                  )}
+                </Box>
+                <Text as="div" align="center">
+                  Page {currentPage} of {totalPages}
+                </Text>
+              </Box>
+            </Flex>
+          )}
         </div>
       )}
     </Box>

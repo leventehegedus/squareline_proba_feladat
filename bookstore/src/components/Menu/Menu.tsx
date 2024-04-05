@@ -20,6 +20,7 @@ import Lock from "./lock-svgrepo-com.svg";
 import LockSlash from "./lock-slash-svgrepo-com.svg";
 import Star from "./star-1-svgrepo-com.svg";
 import Profile from "./profile-svgrepo-com.svg";
+import Home from "./home-1-svgrepo-com.svg";
 
 const Menu: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -120,20 +121,23 @@ const Menu: React.FC = () => {
         )}
       </Flex>
       <Flex className="h-12 bg-slate-100 items-center px-4 md:px-16 justify-end">
-        {isLoggedIn && (
-          <>
-            <Flex gap="2">
-              <NavLink to={`/favorites`}>
-                {" "}
-                <img src={Star} className="w-6" />
-              </NavLink>
-              <NavLink to={`/`}>
-                {" "}
+        <>
+          <Flex gap="2">
+            <NavLink to={`/`}>
+              {" "}
+              <img src={Home} className="w-6" />
+            </NavLink>
+            {isLoggedIn && (
+              <>
+                <NavLink to={`/favorites`}>
+                  {" "}
+                  <img src={Star} className="w-6" />
+                </NavLink>
                 <img src={Profile} className="w-6" />
-              </NavLink>
-            </Flex>
-          </>
-        )}
+              </>
+            )}
+          </Flex>
+        </>
       </Flex>
     </>
   );
