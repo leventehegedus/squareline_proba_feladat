@@ -45,14 +45,7 @@ const Releases: React.FC = () => {
           <CarouselContent>
             {books.map((book, index) => (
               <CarouselItem key={index} className="md:basis-1/1 lg:basis-1/5 ">
-                <Book
-                  title={book.title}
-                  subtitle={book.subtitle}
-                  isbn13={book.isbn13}
-                  price={book.price}
-                  image={book.image}
-                  url={book.url}
-                />
+                <Book book={book} key={book.isbn13} />
               </CarouselItem>
             ))}
           </CarouselContent>

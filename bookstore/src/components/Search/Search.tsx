@@ -64,14 +64,7 @@ const FindYourBooks: React.FC = () => {
         <div>
           <div className="grid grid-cols-1 lg:grid-cols-5	gap-2">
             {books.map((book: IBook) => (
-              <Book
-                title={book.title}
-                subtitle={book.subtitle}
-                isbn13={book.isbn13}
-                price={book.price}
-                image={book.image}
-                url={book.url}
-              />
+              <Book book={book} key={book.isbn13} />
             ))}
           </div>
           {books.length > 0 && (

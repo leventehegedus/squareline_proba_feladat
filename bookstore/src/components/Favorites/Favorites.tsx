@@ -14,15 +14,7 @@ const Favorites: React.FC = () => {
 
       <Box className="grid grid-cols-1 lg:grid-cols-5 gap-2">
         {favorites.map((book: IBook) => (
-          <Book
-            title={book.title}
-            subtitle={book.subtitle}
-            isbn13={book.isbn13}
-            price={book.price}
-            image={book.image}
-            url={book.url}
-            key={book.isbn13}
-          />
+          <Book book={book} key={book.isbn13} />
         ))}
       </Box>
     </Box>

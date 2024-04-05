@@ -5,7 +5,7 @@ import { Flex, Text, Box } from "@radix-ui/themes";
 import Star from "./assets/star-1-svgrepo-com.svg";
 import StarSlash from "./assets/star-slash-svgrepo-com.svg";
 
-const Book: React.FC<IBook> = (book: IBook) => {
+const Book: React.FC<{ book: IBook }> = ({ book }) => {
   const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favoriteSlice);
 
