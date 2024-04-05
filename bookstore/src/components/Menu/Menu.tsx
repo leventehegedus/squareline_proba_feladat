@@ -16,11 +16,11 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import { Flex, Text, Box } from "@radix-ui/themes";
-import Lock from "./lock-svgrepo-com.svg";
-import LockSlash from "./lock-slash-svgrepo-com.svg";
-import Star from "./star-1-svgrepo-com.svg";
-import Profile from "./profile-svgrepo-com.svg";
-import Home from "./home-1-svgrepo-com.svg";
+import Lock from "./assets/lock-svgrepo-com.svg";
+import LockSlash from "./assets/lock-slash-svgrepo-com.svg";
+import Star from "./assets/star-1-svgrepo-com.svg";
+import Profile from "./assets/profile-svgrepo-com.svg";
+import Home from "./assets/home-1-svgrepo-com.svg";
 
 const Menu: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +32,6 @@ const Menu: React.FC = () => {
 
   const handleLogin = () => {
     if (username && password) {
-      console.log("pina");
       dispatch(login());
       toast({
         description: "Logged in",

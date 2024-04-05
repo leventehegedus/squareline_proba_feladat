@@ -12,7 +12,7 @@ const Favorites: React.FC = () => {
         Favorites
       </Text>
 
-      <Box className="grid grid-cols-1 lg:grid-cols-5	gap-2">
+      <Box className="grid grid-cols-1 lg:grid-cols-5 gap-2">
         {favorites.map((book: IBook) => (
           <Book
             title={book.title}

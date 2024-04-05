@@ -2,15 +2,14 @@ import { updateFavorite } from "@/features/favorites/favoriteSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { IBook } from "@/types/book";
 import { Flex, Text, Box } from "@radix-ui/themes";
-import Star from "./star-1-svgrepo-com.svg";
-import StarSlash from "./star-slash-svgrepo-com.svg";
+import Star from "./assets/star-1-svgrepo-com.svg";
+import StarSlash from "./assets/star-slash-svgrepo-com.svg";
 
 const Book: React.FC<IBook> = (book: IBook) => {
   const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favoriteSlice);
 
   const addFav = (book: IBook) => {
-    console.log(book);
     dispatch(updateFavorite(book));
   };
   const isFavorite = (isbn13: string) => {
