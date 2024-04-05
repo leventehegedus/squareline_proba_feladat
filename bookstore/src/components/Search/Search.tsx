@@ -23,7 +23,7 @@ const FindYourBooks: React.FC = () => {
       }
       const data = await response.json();
       setBooks(data.books);
-      setTotalPages(Math.ceil(data.total / 10));
+      setTotalPages(Math.ceil(data.total / 10)); // the API gives back only 10 books, so I calculated from it, I also modified becuase of the grid to 2x5 instead of the requested 5x5
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
