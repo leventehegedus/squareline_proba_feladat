@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
-import { Flex, Text } from "@radix-ui/themes";
+import { Flex, Text, Box } from "@radix-ui/themes";
 import Lock from "./lock-svgrepo-com.svg";
 import LockSlash from "./lock-slash-svgrepo-com.svg";
 import Star from "./star-1-svgrepo-com.svg";
@@ -68,8 +68,8 @@ const Menu: React.FC = () => {
                   done.
                 </DialogDescription>
               </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
+              <Box className="grid gap-4 py-4">
+                <Box className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="username" className="text-right">
                     Username
                   </Label>
@@ -82,8 +82,8 @@ const Menu: React.FC = () => {
                       setUsername((e.target as HTMLInputElement).value)
                     }
                   />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
+                </Box>
+                <Box className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="password" className="text-right">
                     Password
                   </Label>
@@ -96,8 +96,8 @@ const Menu: React.FC = () => {
                       setPassword((e.target as HTMLInputElement).value)
                     }
                   />
-                </div>
-              </div>
+                </Box>
+              </Box>
               <DialogFooter className="sm:justify-start">
                 <Button
                   type="button"

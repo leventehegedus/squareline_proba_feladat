@@ -59,7 +59,7 @@ const FindYourBooks: React.FC = () => {
       </Flex>
 
       {loading ? (
-        <p>Loading...</p>
+        <Box>Loading...</Box>
       ) : (
         <div>
           <div className="grid grid-cols-1 lg:grid-cols-5	gap-2">
